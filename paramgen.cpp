@@ -14,7 +14,7 @@ ParameterGenerator::ParameterGenerator(HINSTANCE hInst, HWND hWindow) {
 ParameterGenerator::~ParameterGenerator() {
 	delete _debug;
 	delete _inform;
-	delete _configReader;	
+	delete _configReader;
 }
 
 /*

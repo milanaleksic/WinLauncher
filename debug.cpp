@@ -6,6 +6,7 @@
 
 Debug::Debug() : _debugTurnedOn(false) {
 	int paramCount[] = { 0 };
+	_buffer = NULL;
 	wchar_t** programArgsArray = CommandLineToArgvW(GetCommandLine(), &paramCount[0]);
 	for (int i=1; i<paramCount[0]; i++) {
 		if (wcscmp(programArgsArray[i], L"debug") == 0) {
@@ -17,7 +18,8 @@ Debug::Debug() : _debugTurnedOn(false) {
 }
 
 Debug::~Debug() {
-	_buffer->close();
+	if (_buffer != NULL && _buffer->is_open())
+		_buffer->close();
 }
 
 void Debug::Log(int cntArgs, ...) {
