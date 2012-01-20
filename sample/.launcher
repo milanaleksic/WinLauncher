@@ -1,0 +1,6 @@
+# Configuration file for WinLauncher. Please visit www.milanaleksic.net/projects/winlauncher for syntax
+executor = javaw
+mainClass = net.milanaleksic.mcs.Startup
+showSplash = false
+programArgs = -c
+extra=-javaagent:../lib/aspectjweaver.jar -Dfile.encoding=UTF-8 -Dnet.sf.ehcache.skipUpdateCheck=true -Xmn64m -Xmx256m -Xms128m -Xverify:none -XX:+UseG1GC -XX:+PrintGCDateStamps -Xloggc:gcdump.log -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCApplicationStoppedTime -XX:+PrintCompilation -server -XX:+TieredCompilation

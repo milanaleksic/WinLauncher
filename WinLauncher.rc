@@ -1,0 +1,124 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Serbian (Cyrillic) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SRB)
+#ifdef _WIN32
+LANGUAGE LANG_SERBIAN, SUBLANG_SERBIAN_CYRILLIC
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "Стартер"
+    IDS_NOTFOUND            "Нису пронађени неки од неопходних фајлова"
+    IDS_APP_ERROR           "Апликациона грешка"
+    IDS_BINNOTEXISTING      """BIN"" директоријум не постоји - погрешна локација стартера:\r\n"
+    IDS_MAINCLASSNAME       "rs.in.aleksic.mcs.Startup"
+    IDS_COULDNOTSTART       "Програм није могао бити стартован, употребљени параметри:\r\n"
+    IDC_WINLAUNCHER         "СТАРТЕР"
+    IDS_ERRORACCESS         "Проблем приликом приступања фајлу конфигурације стартера"
+    IDS_ERRORNOTFOUND       "Проблем приликом проналажења фајла конфигурације стартера"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERROR_ALREADY_ACTIVE 
+                            "Програм је већ активан, не можете покренути још једну инстанцу док не угасите стару"
+    IDS_ERROR_INCAPABLE_TO_PARSE_CONFIG 
+                            "Нисам у стању да испарсирам конфигурацију стартера"
+    IDS_INFO                "Информација за корисника"
+    IDS_WIN_LAUNCHER_ENV_PARAM_WAIT_ON_STARTUP 
+                            "winLauncherEnvParamWaitOnStartup"
+END
+
+#endif    // Serbian (Cyrillic) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_WINLAUNCHER         ICON                    "WinLauncher.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
