@@ -91,7 +91,7 @@
     </Link>
     <PostBuildEvent>
       <Command>del $(OutDir)Launch.exe
-upx.exe -9 $(TargetPath) -o$(OutDir)Launch.exe
+$(ProjectDir)\upx\upx.exe -9 $(TargetPath) -o$(OutDir)Launch.exe
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -117,10 +117,12 @@ upx.exe -9 $(TargetPath) -o$(OutDir)Launch.exe
     <ClInclude Include="WinLauncher.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="small.ico" />
+    <None Include=".gitignore" />
+    <None Include="sample\.launcher" />
+    <None Include="upx\upx.exe" />
     <None Include="WinLauncher.ico" />
-    <None Include="..\startup\.launcher" />
-    <None Include="formatkomande.txt" />
+    <None Include="README.md" />
+    <None Include="WinLauncher.vcproj" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinLauncher.rc" />
