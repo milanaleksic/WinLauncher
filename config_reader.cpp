@@ -5,7 +5,7 @@
 #include <mbstring.h>
 #include "config_reader.h"
 
-ConfigReader::ConfigReader(Inform* inform, Debug* debug) {
+ConfigReader::ConfigReader(const Inform* inform, Debug* debug) {
 	_inform = inform;
 	_debug = debug;
 }
@@ -61,7 +61,7 @@ int ConfigReader::ReadConfigFile() {
 	return returnValue;
 }
 
-void ConfigReader::DoProcessReadBuffer(int noBytesRead, int fileSize, char *textAscii) {
+void ConfigReader::DoProcessReadBuffer(int noBytesRead, int fileSize, const char *textAscii) {
 	wchar_t *_text = new wchar_t[fileSize];
 	memset(_text, 0x00, fileSize);
 
@@ -97,8 +97,8 @@ void ConfigReader::DoProcessReadBuffer(int noBytesRead, int fileSize, char *text
 	delete [] _text;
 }
 
-bool ConfigReader::LineIsAComment(wstring& str) {
-	wstring::iterator iter;
+bool ConfigReader::LineIsAComment(const wstring& str) {
+	wstring::const_iterator iter;
 	for (iter = str.begin() ; iter < str.end(); iter++)
 	{
 		if (*iter == L' ' || *iter == L'\t')
@@ -110,7 +110,7 @@ bool ConfigReader::LineIsAComment(wstring& str) {
 	return false;
 }
 
-wstring ConfigReader::TrimString(wstring& str) {
+wstring ConfigReader::TrimString(const wstring& str) {
 	if (str.length() == 0)
 		return str;
 	int begin = 0, end = str.length()-1;
@@ -124,7 +124,7 @@ wstring ConfigReader::TrimString(wstring& str) {
 		return str;
 }
 
-wstring ConfigReader::NewExtractConfig(wstring& configName) {
+wstring ConfigReader::NewExtractConfig(const wstring& configName) {
 	if (_parameterMap.size() == 0) {
 		//TODO: throw exception (after introducing exceptions :)
 	}

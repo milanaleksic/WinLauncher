@@ -39,7 +39,7 @@ void Debug::Log(int cntArgs, ...) {
 	_output << endl;
 }
 
-void Debug::Log(wstring& logLine) {
+void Debug::Log(const wstring& logLine) {
 	if (_debugTurnedOn)
 		_output << Time() << L"DEBUG: " << logLine << endl;
 }
@@ -48,7 +48,7 @@ bool Debug::IsDebugOn() {
 	return _debugTurnedOn;
 }
 
-wstring Debug::Time() {
+wstring Debug::Time() const {
 	// using native Windows API date since STL does not use millisecond precision
 	SYSTEMTIME st;
     GetSystemTime(&st);
