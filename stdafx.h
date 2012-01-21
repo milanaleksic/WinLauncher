@@ -13,9 +13,8 @@
 #include <sstream>
 #include <iostream>
 
-#define MAX_LOADSTRING 2048
-#define MAX_PARAMSTRING 4096
-#define MAX_LEN_CONFIG 8192
+// max size of a string to be loaded from resources
+#define MAX_LOADSTRING 4096
 
 #define CONFIG_EXECUTOR L"executor"
 #define CONFIG_MAIN_CLASS L"mainClass"
