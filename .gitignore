@@ -1,6 +1,7 @@
 Debug
 Release
 ipch
+.idea
 WinLauncher.ncb
 WinLauncher.opensdf
 WinLauncher.sdf
