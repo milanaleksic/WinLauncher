@@ -75,7 +75,11 @@ void ConfigReader::DoProcessReadBuffer(int noBytesRead, int fileSize, const char
 			wstring paramValue = TrimString(line.substr(pos+1, line.length()));
 			_debug->Log(7, L"Line [", line.data(), L"] deduced as a proper parameter: [", paramName.data(), L"]=[", paramValue.data(), L"]");
 
-			_parameterMap[paramName] = paramValue;
+			wstring previousValue = _parameterMap[paramName];
+			if (!previousValue.empty())
+				_parameterMap[paramName] = previousValue + L" " + paramValue;
+			else
+				_parameterMap[paramName] = paramValue;
 		}
 	}
 	delete [] _text;
