@@ -262,7 +262,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\..\GanymedeWorkspace\CUConcept\startup\.launcher"
+			RelativePath="startup\.launcher"
 			>
 		</File>
 		<File
