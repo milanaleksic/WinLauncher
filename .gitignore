@@ -7,3 +7,5 @@ WinLauncher.opensdf
 WinLauncher.sdf
 WinLauncher.suo
 *.user
+sample/*.log
+*.iml

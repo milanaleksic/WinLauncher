@@ -41,7 +41,7 @@ void ParameterGenerator::ChangeDirectoryIfSomeWellKnownFolderIsFound() {
 	}
 
 	const int COUNT = 3;
-	wchar_t* wellKnownDirectories[COUNT] = { L"startup", L"bin", L"out" };
+	wchar_t* wellKnownDirectories[COUNT] = { L"startup" };
 	for (int i=0; i < COUNT; i++) {
 		if (SetCurrentDirectory(wellKnownDirectories[i])) {
 			_wellKnownSubfolderFound = true;
