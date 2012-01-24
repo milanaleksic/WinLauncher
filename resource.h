@@ -5,8 +5,6 @@
 #define IDS_APP_TITLE                   103
 #define IDS_NOTFOUND                    104
 #define IDS_APP_ERROR                   105
-#define IDS_BINNOTEXISTING              106
-#define IDS_MAINCLASSNAME               107
 #define IDI_WINLAUNCHER                 107
 #define IDS_COULDNOTSTART               108
 #define IDI_SMALL                       108
@@ -16,8 +14,6 @@
 #define IDS_ERROR_ALREADY_ACTIVE        112
 #define IDS_ERROR_INCAPABLE_TO_PARSE_CONFIG 113
 #define IDS_INFO                        114
-#define IDS_STRING115                   115
-#define IDS_WIN_LAUNCHER_ENV_PARAM_WAIT_ON_STARTUP 115
 #define IDR_MAINFRAME                   128
 #define IDS_UNKNOWN                     201
 #define IDC_STATIC                      -1

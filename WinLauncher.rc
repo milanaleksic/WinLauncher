@@ -33,12 +33,11 @@ LANGUAGE LANG_SERBIAN, SUBLANG_SERBIAN_CYRILLIC
 
 STRINGTABLE 
 BEGIN
-    IDS_APP_TITLE           "Стартер"
+    IDS_APP_TITLE           "WinLauncher"
     IDS_NOTFOUND            "Нису пронађени неки од неопходних фајлова"
     IDS_APP_ERROR           "Апликациона грешка"
-    IDS_MAINCLASSNAME       "rs.in.aleksic.mcs.Startup"
     IDS_COULDNOTSTART       "Програм није могао бити стартован, употребљени параметри:\r\n"
-    IDC_WINLAUNCHER         "СТАРТЕР"
+    IDC_WINLAUNCHER         "WINLAUNCHER"
     IDS_ERRORACCESS         "Проблем приликом приступања фајлу конфигурације стартера"
     IDS_ERRORNOTFOUND       "Проблем приликом проналажења фајла конфигурације стартера"
 END
@@ -50,8 +49,6 @@ BEGIN
     IDS_ERROR_INCAPABLE_TO_PARSE_CONFIG 
                             "Нисам у стању да испарсирам конфигурацију стартера"
     IDS_INFO                "Информација за корисника"
-    IDS_WIN_LAUNCHER_ENV_PARAM_WAIT_ON_STARTUP 
-                            "winLauncherEnvParamWaitOnStartup"
 END
 
 #endif    // Serbian (Cyrillic) resources
@@ -66,6 +63,26 @@ END
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
 #endif //_WIN32
+
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "WinLauncher"
+    IDS_NOTFOUND            "Some mandatory files were not found"
+    IDS_APP_ERROR           "Application error"
+    IDS_COULDNOTSTART       "Application startup failed. Parameters used::\r\n"
+    IDC_WINLAUNCHER         "WINLAUNCHER"
+    IDS_ERRORACCESS         "Problem while accessing configuration file"
+    IDS_ERRORNOTFOUND       "Configuration file coud not have been found"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERROR_ALREADY_ACTIVE 
+                            "Program is already active, you can't start another instance until you shutdown previous"
+    IDS_ERROR_INCAPABLE_TO_PARSE_CONFIG 
+                            "Configuration file could not be parsed"
+    IDS_INFO                "User information"
+END
 
 /////////////////////////////////////////////////////////////////////////////
 //
