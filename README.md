@@ -6,13 +6,6 @@ WinLauncher is C++ WinApi bootstrap application for complicated (multi-library) 
 Instead of using complicated batch files you can use this application to force a formal approach to your 
 Java application deployment.
 
-Bootstrapper startup parameters
-------------------------------------------------------------
-
-Besides configuration file itself, launcher can have some parameters sent to it directly:
-* **debug** parameter - to turn on debug output where some debug files are created
-
-
 IDE requirements
 ------------------------------------------------------------
 
@@ -70,6 +63,13 @@ Singleton application and file locking
 WinLauncher expects that Java application (if desired) locks configuration file .launcher when started up.
 This will allow WinLauncher to early fail (before JVM has been started) and inform user that previous instance
 of the Java application should be closed first.
+
+WinLauncher startup parameters
+------------------------------------------------------------
+
+Besides configuration file itself, launcher can have some parameters sent to it directly:
+
+- **debug** parameter - to turn on debug output where some debug files are created
 
 
 WinLauncher environment parameters
