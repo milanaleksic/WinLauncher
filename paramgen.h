@@ -19,11 +19,12 @@ private:
 	ConfigReader* _configReader ;
 
 	void AppendDebugInformation() ;
-	void AppendJarLibraries() ;
+	void AppendClasspath() ;
 	void AppendExtraParameters() ;
 	void AppendSplashParameter() ;
 	void AppendMainClassParameter() ;
 	void AppendProgramArgsParameter() ;
+	wstring GetExtraClasspathDirParameter() ;
 
 	void ChangeDirectoryIfSomeWellKnownFolderIsFound() ;
 

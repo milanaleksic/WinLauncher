@@ -23,6 +23,7 @@
 #define CONFIG_SHOW_SPLASH L"showSplash"
 #define CONFIG_EXTRA_PARAMS L"extra"
 #define CONFIG_PROGRAM_ARGS L"programArgs"
+#define CONFIG_EXTRA_CLASSPATH_DIR L"extraClasspathDir"
 
 #define FILENAME_CONFIG ".launcher"
 

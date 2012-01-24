@@ -97,7 +97,13 @@ void ParameterGenerator::AppendDebugInformation() {
 		_debug->Log(2, L"Debug included. Current startParams: ", _startParams.str().data());
 }
 
-void ParameterGenerator::AppendJarLibraries() {
+void ParameterGenerator::AppendClasspath() {
+	_startParams <<  L" -cp .";
+
+	wstring extraClassPath = GetExtraClasspathDirParameter();
+	if (extraClassPath.length()>0)
+		_startParams <<  L";" << (_wellKnownSubfolderFound ? L"..\\" : L"") << extraClassPath;
+
 	struct _wfinddata_t finddata;
 	intptr_t hFile = _wellKnownSubfolderFound 
 		? _wfindfirst(L"..\\lib\\*.jar", &finddata)
@@ -106,7 +112,6 @@ void ParameterGenerator::AppendJarLibraries() {
 	if (hFile == -1)
 		_inform->InformUser(IDS_NOTFOUND);
 
-	_startParams <<  L" -cp .";
 	do {
 		_startParams << L";" << (_wellKnownSubfolderFound ? L"..\\" : L"") << L"lib\\" <<  finddata.name;
 	} while( _wfindnext( hFile, &finddata ) == 0 );
@@ -177,27 +182,25 @@ void ParameterGenerator::AppendProgramArgsParameter() {
 		_debug->Log(2, L"Program args included. Current startParams: ", _startParams.str().data());
 }
 
+wstring ParameterGenerator::GetExtraClasspathDirParameter() {
+	wstring key(CONFIG_EXTRA_CLASSPATH_DIR);
+	wstring extraClassPath = _configReader->NewExtractConfig(key);
+
+	if (extraClassPath.length() > 0) {
+		if (_debug->IsDebugOn())
+			_debug->Log(2, L"Extra Classpath dir included: ", extraClassPath.data());
+		return extraClassPath;
+	}
+	return L"";
+}
+
 void ParameterGenerator::CreateJavaStartParameters() {
 	_debug->Log(1, L"------- Parameters generation proceeding");
-
-	// UKOLIKO JE DEBUG MOD, POTREBNO JE DODATI PRE I POSLE EKSTRA PARAMETARA
-	// DODATNE PARAMETRE ZA CMD PROGRAM, KAKO BI SE PRAVILNO OBRADILO
-	// PREUSMERAVANJE ULAZA/IZLAZA
 	AppendDebugInformation();
-	
-	// BIBLIOTEKE u LIB poddirektorijumu
-	AppendJarLibraries();
-	
-	// SPLASH DIREKTORIJUM
+	AppendClasspath();
 	AppendSplashParameter();
-
-	// CITANJE DODATNIH PARAMETARA ZA JVM
 	AppendExtraParameters();
-
-	// IME GLAVNE KLASE SE CITA IZ RESURSA UKOLIKO NE POSTOJI PODESAVANJE!
 	AppendMainClassParameter();
-
-	// DODAVANJE PARAMETARA SAMOG PROGRAMA
 	AppendProgramArgsParameter();
 }
 
