@@ -23,8 +23,6 @@ private:
 
 	void DoProcessReadBuffer(int, int, const char*) ;
 
-	void ChangeDirectoryIfSomeWellKnownFolderIsFound();
-
 public:
 
 	ConfigReader(const Inform*, Debug*);

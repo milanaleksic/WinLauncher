@@ -12,7 +12,6 @@ ConfigReader::ConfigReader(const Inform* inform, Debug* debug) {
 
 int ConfigReader::ReadConfigFile() {
 	_debug->Log(1, L"------- Configuration File Parsing");
-	ChangeDirectoryIfSomeWellKnownFolderIsFound();
 
 	int fh;
 	int noBytesRead;
@@ -45,25 +44,6 @@ int ConfigReader::ReadConfigFile() {
 	delete [] textAscii;
 
 	return returnValue;
-}
-
-void ConfigReader::ChangeDirectoryIfSomeWellKnownFolderIsFound() {
-	if (_debug->IsDebugOn()) {
-		wchar_t* currentDir = new wchar_t[MAX_PATH_LENGTH];
-		memset(currentDir, 0x00, MAX_PATH_LENGTH);
-		GetCurrentDirectory(MAX_PATH_LENGTH, currentDir);
-		_debug->Log(2, L"Current directory is: ", currentDir);
-		delete[] currentDir;
-	}
-
-	const int COUNT = 3;
-	wchar_t* wellKnownDirectories[COUNT] = { L"startup", L"bin", L"out" };
-	for (int i=0; i < COUNT; i++) {
-		if (SetCurrentDirectory(wellKnownDirectories[i])) {
-			_debug->Log(2, L"Well-known subfolder found, setting startup dir to it: ", wellKnownDirectories[i]);
-			return;
-		}
-	}
 }
 
 void ConfigReader::DoProcessReadBuffer(int noBytesRead, int fileSize, const char *textAscii) {

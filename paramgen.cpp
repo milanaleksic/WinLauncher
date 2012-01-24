@@ -4,7 +4,7 @@
 #include "paramgen.h"
 #include "debug.h"
 
-ParameterGenerator::ParameterGenerator(HINSTANCE hInst, HWND hWindow) {
+ParameterGenerator::ParameterGenerator(HINSTANCE hInst, HWND hWindow) : _wellKnownSubfolderFound(false) {
 	_debug = new Debug();
 	_debug->Log(1, L"WinLauncher starting up");
 	_inform = new Inform(hInst, hWindow, _debug);
@@ -22,12 +22,33 @@ Ako hoces da informises korisnika o necemu (kada nije greska u obradi), koristi:
 InformUser(IDS_INFO, <tekst koji hoces da posaljes>);
 */
 int ParameterGenerator::StartApplication(void) {
+	ChangeDirectoryIfSomeWellKnownFolderIsFound();
 	int configFileRead = _configReader->ReadConfigFile();
 	if (configFileRead != 0)
 		return configFileRead;
 	SleepIfRequestedFromOutside();
 	CreateJavaStartParameters();
 	return ExecuteProgram();
+}
+
+void ParameterGenerator::ChangeDirectoryIfSomeWellKnownFolderIsFound() {
+	if (_debug->IsDebugOn()) {
+		wchar_t* currentDir = new wchar_t[MAX_PATH_LENGTH];
+		memset(currentDir, 0x00, MAX_PATH_LENGTH);
+		GetCurrentDirectory(MAX_PATH_LENGTH, currentDir);
+		_debug->Log(2, L"Current directory is: ", currentDir);
+		delete[] currentDir;
+	}
+
+	const int COUNT = 3;
+	wchar_t* wellKnownDirectories[COUNT] = { L"startup", L"bin", L"out" };
+	for (int i=0; i < COUNT; i++) {
+		if (SetCurrentDirectory(wellKnownDirectories[i])) {
+			_wellKnownSubfolderFound = true;
+			_debug->Log(2, L"Well-known subfolder found, setting startup dir to it: ", wellKnownDirectories[i]);
+			return;
+		}
+	}
 }
 
 // ako se zeli, moguce je odloziti startovanje aplikacije tako sto se (putem environmenta)
@@ -48,7 +69,6 @@ void ParameterGenerator::SleepIfRequestedFromOutside() {
 	delete[] buff;
 }
 
-// citamo koji executor koristimo (default je javaw)
 wstring ParameterGenerator::GetExecutorName() {
 	wstring key = CONFIG_EXECUTOR;
 	return _configReader->NewExtractConfig(key);
@@ -70,22 +90,25 @@ void ParameterGenerator::AppendDebugInformation() {
 	if (executor.empty())
 		return;
 	
-	_startParams <<  L" /C \"" <<  executor.data() <<  L"\"";
-	_startParams <<  L" >..\\" << FILENAME_DEBUG_STDOUT << L" 2>..\\" << FILENAME_DEBUG_STDERR;
+	_startParams <<  L" /C \"" <<  executor.data() <<  L"\""
+		<< L" >"  << (_wellKnownSubfolderFound ? L"..\\" : L"") << FILENAME_DEBUG_STDOUT 
+		<< L" 2>" << (_wellKnownSubfolderFound ? L"..\\" : L"") << FILENAME_DEBUG_STDERR;
 	if (_debug->IsDebugOn())
 		_debug->Log(2, L"Debug included. Current startParams: ", _startParams.str().data());
 }
 
 void ParameterGenerator::AppendJarLibraries() {
 	struct _wfinddata_t finddata;
-	intptr_t hFile = _wfindfirst(L"..\\lib\\*.jar", &finddata);
+	intptr_t hFile = _wellKnownSubfolderFound 
+		? _wfindfirst(L"..\\lib\\*.jar", &finddata)
+		: _wfindfirst(L"lib\\*.jar", &finddata);
 
 	if (hFile == -1)
 		_inform->InformUser(IDS_NOTFOUND);
 
 	_startParams <<  L" -cp .";
 	do {
-		_startParams <<  L";..\\lib\\" <<  finddata.name;
+		_startParams << L";" << (_wellKnownSubfolderFound ? L"..\\" : L"") << L"lib\\" <<  finddata.name;
 	} while( _wfindnext( hFile, &finddata ) == 0 );
 
 	if (_debug->IsDebugOn())
