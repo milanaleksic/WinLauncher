@@ -11,21 +11,25 @@ class ConfigReader {
 
 private:
 
-	Inform* _inform;
+	const Inform* _inform;
 
 	Debug* _debug;
 
 	map<wstring, wstring> _parameterMap;
 
-	wstring ConfigReader::TrimString(wstring& str);
+	wstring TrimString(const wstring&);
 
-	bool LineIsAComment(wstring& str);
+	bool LineIsAComment(const wstring&);
+
+	void DoProcessReadBuffer(int, int, const char*) ;
+
+	void ChangeDirectoryIfSomeWellKnownFolderIsFound();
 
 public:
 
-	ConfigReader(Inform*, Debug*);
+	ConfigReader(const Inform*, Debug*);
 	
-	wstring NewExtractConfig(wstring& configName);
+	wstring NewExtractConfig(const wstring&);
 
 	int ReadConfigFile();
 

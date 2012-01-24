@@ -36,7 +36,6 @@ BEGIN
     IDS_APP_TITLE           "Стартер"
     IDS_NOTFOUND            "Нису пронађени неки од неопходних фајлова"
     IDS_APP_ERROR           "Апликациона грешка"
-    IDS_BINNOTEXISTING      """BIN"" директоријум не постоји - погрешна локација стартера:\r\n"
     IDS_MAINCLASSNAME       "rs.in.aleksic.mcs.Startup"
     IDS_COULDNOTSTART       "Програм није могао бити стартован, употребљени параметри:\r\n"
     IDC_WINLAUNCHER         "СТАРТЕР"

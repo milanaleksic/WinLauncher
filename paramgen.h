@@ -8,7 +8,7 @@ class ParameterGenerator {
 
 private:
 
-	Inform* _inform;
+	const Inform* _inform;
 
 	Debug* _debug;
 	
@@ -39,16 +39,12 @@ private:
 public:
 
 	// konstruktor 
-	ParameterGenerator(HINSTANCE, HWND) ;
+	ParameterGenerator(const HINSTANCE, const HWND) ;
 
 	// podrazumevani destruktor
 	~ParameterGenerator() ;
 
 	// startovanje aplikacije (entry point za klijente)
 	int StartApplication(void) ;
-
-	// informisanje korisnika
-	void InformUser(int) ;
-	void InformUser(int, TCHAR*) ;
 
 };

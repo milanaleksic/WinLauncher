@@ -15,6 +15,8 @@
 
 // max size of a string to be loaded from resources
 #define MAX_LOADSTRING 4096
+// used as "max" param for fetching current directory path
+#define MAX_PATH_LENGTH 512
 
 #define CONFIG_EXECUTOR L"executor"
 #define CONFIG_MAIN_CLASS L"mainClass"
@@ -22,6 +24,12 @@
 #define CONFIG_EXTRA_PARAMS L"extra"
 #define CONFIG_PROGRAM_ARGS L"programArgs"
 
+#define FILENAME_CONFIG ".launcher"
+
 #define FILENAME_DEBUG_OUTPUT "debug-output.log"
 #define FILENAME_DEBUG_STDOUT L"debug-stdout.log"
 #define FILENAME_DEBUG_STDERR L"debug-stderr.log"
+
+#define PARAM_NOCHANGEDIR L"nochangedir"
+
+#define DEFAULT_EXECUTOR L"javaw"

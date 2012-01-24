@@ -23,7 +23,7 @@ void SetCurrentDirectoryToExePosition() {
 
 	// if you sent "nochangedir" argument to WinLauncher than there will be no changing of current directory
 	for (int i=1; i<*paramCount; i++) {
-		if (wcscmp(programArgsArray[i], L"nochangedir")==0)
+		if (wcscmp(programArgsArray[i], PARAM_NOCHANGEDIR)==0)
 			return;
 	}
 	

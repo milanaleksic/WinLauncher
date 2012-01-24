@@ -55,11 +55,11 @@ wstring ParameterGenerator::GetExecutorName() {
 }
 
 int ParameterGenerator::ExecuteProgram() {
-	wstring value = GetExecutorName();
-	if (value.empty())
+	wstring executor = GetExecutorName();
+	if (executor.empty())
 		return 1;
 	
-	return _inform->ShellExec(value, _startParams.str(), _debug->IsDebugOn());
+	return _inform->ShellExec(executor, _startParams.str());
 }
 
 void ParameterGenerator::AppendDebugInformation() {

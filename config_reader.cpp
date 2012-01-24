@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Resource.h"
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <mbstring.h>
+#include <fcntl.h>    // _O_RDWR
+#include <sys/stat.h> // _S_IWRITE
+#include <mbstring.h> // _mbbtombc
 #include "config_reader.h"
 
 ConfigReader::ConfigReader(const Inform* inform, Debug* debug) {
@@ -11,28 +11,14 @@ ConfigReader::ConfigReader(const Inform* inform, Debug* debug) {
 }
 
 int ConfigReader::ReadConfigFile() {
-	// prelazimo u direktorijum startup (za dev)
-	// ukoliko ga nema pokusavamo da predjemo u bin (za deploy)
-	// inace, informisemo korisnika o gresci
-	if (!SetCurrentDirectory(TEXT("startup"))) {
-		if (!SetCurrentDirectory(TEXT("bin"))) {
-			wchar_t* t = new wchar_t[500];
-			GetCurrentDirectory(500,t);
-			
-			_inform->InformUser(IDS_BINNOTEXISTING, t);
-
-			delete[] t;
-			return 1;
-		}
-	}
+	_debug->Log(1, L"------- Configuration File Parsing");
+	ChangeDirectoryIfSomeWellKnownFolderIsFound();
 
 	int fh;
 	int noBytesRead;
 	int returnValue = 0;
-	
-	_debug->Log(1, L"------- Configuration File Parsing");
 
-	returnValue = _sopen_s( &fh, ".launcher", _O_RDWR, _SH_DENYNO, _S_IWRITE );
+	returnValue = _sopen_s( &fh, FILENAME_CONFIG, _O_RDWR, _SH_DENYNO, _S_IWRITE );
 
 	if (returnValue != 0)
 		return returnValue;
@@ -61,9 +47,27 @@ int ConfigReader::ReadConfigFile() {
 	return returnValue;
 }
 
+void ConfigReader::ChangeDirectoryIfSomeWellKnownFolderIsFound() {
+	if (_debug->IsDebugOn()) {
+		wchar_t* currentDir = new wchar_t[MAX_PATH_LENGTH];
+		memset(currentDir, 0x00, MAX_PATH_LENGTH);
+		GetCurrentDirectory(MAX_PATH_LENGTH, currentDir);
+		_debug->Log(2, L"Current directory is: ", currentDir);
+		delete[] currentDir;
+	}
+
+	const int COUNT = 3;
+	wchar_t* wellKnownDirectories[COUNT] = { L"startup", L"bin", L"out" };
+	for (int i=0; i < COUNT; i++) {
+		if (SetCurrentDirectory(wellKnownDirectories[i])) {
+			_debug->Log(2, L"Well-known subfolder found, setting startup dir to it: ", wellKnownDirectories[i]);
+			return;
+		}
+	}
+}
+
 void ConfigReader::DoProcessReadBuffer(int noBytesRead, int fileSize, const char *textAscii) {
 	wchar_t *_text = new wchar_t[fileSize];
-	memset(_text, 0x00, fileSize);
 
 	for (int i=0; i<noBytesRead; i++)
 		_text[i] = _mbbtombc(textAscii[i]);

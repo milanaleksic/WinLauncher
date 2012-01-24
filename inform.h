@@ -16,13 +16,13 @@ private:
 
 public:
 
-	Inform(HINSTANCE, HWND, Debug*);
+	Inform(const HINSTANCE, const HWND, Debug*);
 
-	void InformUser(int) ;
-	void InformUser(int, const TCHAR*) ;
+	void InformUser(int) const ;
+	void InformUser(int, const TCHAR*) const;
 
-	void LoadResourceString(UINT, LPWSTR, int) ;
+	void LoadResourceString(UINT, const LPWSTR, int) const;
 
-	int ShellExec(wstring&, wstring&, bool) ;
+	int ShellExec(const wstring&, const wstring&) const;
 
 };

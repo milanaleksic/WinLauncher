@@ -4,13 +4,13 @@
 #include "inform.h"
 #include "debug.h"
 
-Inform::Inform(HINSTANCE hInst, HWND hWind, Debug* debug) {
+Inform::Inform(const HINSTANCE hInst, const HWND hWind, Debug* debug) {
 	_hInst = hInst;
 	_hWindow = hWind;
 	_debug = debug;
 }
 
-void Inform::InformUser(int msgId) {
+void Inform::InformUser(int msgId) const {
 	TCHAR szMessage[MAX_LOADSTRING];
 	TCHAR szAppError[MAX_LOADSTRING];
 	
@@ -22,7 +22,7 @@ void Inform::InformUser(int msgId) {
 	MessageBox(_hWindow, szMessage, szAppError, MB_ICONSTOP | MB_OK);
 }
 
-void Inform::InformUser(int msgId, const TCHAR* rest) {
+void Inform::InformUser(int msgId, const TCHAR* rest) const {
 	TCHAR szMessage[MAX_LOADSTRING];
 	TCHAR szAppError[MAX_LOADSTRING];
 	
@@ -36,30 +36,26 @@ void Inform::InformUser(int msgId, const TCHAR* rest) {
 	MessageBox(_hWindow, szMessage, szAppError, MB_ICONSTOP | MB_OK);
 }
 
-void Inform::LoadResourceString(UINT uID, LPWSTR lpBuffer, int cchBufferMax) {
+void Inform::LoadResourceString(UINT uID, const LPWSTR lpBuffer, int cchBufferMax) const {
 	LoadString(_hInst, uID, lpBuffer, cchBufferMax);
 }
 
-int Inform::ShellExec(wstring& podesavanje, wstring& _startParams, bool debugMode) {
+int Inform::ShellExec(const wstring& executor, const wstring& startParams) const {
 	_debug->Log(1, L"------- Shell Exec preparation proceeding");
-	// priprema za WinAPI Shell komandu za pokretanje programa java(w)+parametri
 	SHELLEXECUTEINFO info;
 	info.hwnd = _hWindow;
 
 
-	if (debugMode) {
-		// DEBUG MOD RADA PROGRAMA GDE SE KREIRAJU STDOUT I STDERR FAJLOVI
+	if (_debug->IsDebugOn()) {
 		info.lpFile = L"cmd";
-
 	} else {
-		// NORMALAN MOD RADA PROGRAMA
-		if (podesavanje.empty())
-			info.lpFile = podesavanje.data();
+		if (!executor.empty())
+			info.lpFile = executor.data();
 		else
-			info.lpFile = L"javaw";
+			info.lpFile = DEFAULT_EXECUTOR;
 	}
 
-	const TCHAR* startParamsData = _startParams.data();
+	const TCHAR* startParamsData = startParams.data();
 	info.nShow = SW_SHOWNORMAL;
 	info.cbSize = sizeof(info);
 	info.fMask = SEE_MASK_NOCLOSEPROCESS;
@@ -74,7 +70,6 @@ int Inform::ShellExec(wstring& podesavanje, wstring& _startParams, bool debugMod
 	info.lpClass = NULL;
 	info.lpIDList = NULL;
 
-	// konacno, pokretanje programa
 	_debug->Log(5, L"Executing program [", info.lpFile, L"] with parameters [", startParamsData, L"]");
 	if (!ShellExecuteEx(&info)) {
 		InformUser(IDS_COULDNOTSTART, startParamsData);

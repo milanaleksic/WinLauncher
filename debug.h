@@ -14,7 +14,7 @@ private:
 	
 	bool _debugTurnedOn;
 
-	wstring Time() ;
+	wstring Time() const;
 
 public:
 
@@ -30,7 +30,7 @@ public:
 
 	void Log(int cntArgs, ...) ;
 	
-	void Log(wstring&) ;
+	void Log(const wstring&) ;
 	
 	bool IsDebugOn() ;
 
