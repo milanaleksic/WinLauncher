@@ -32,5 +32,7 @@
 #define FILENAME_DEBUG_STDERR L"debug-stderr.log"
 
 #define PARAM_NOCHANGEDIR L"nochangedir"
+#define ENV_PARAM_WAITONSTARTUP L"winLauncherEnvParamWaitOnStartup"
 
 #define DEFAULT_EXECUTOR L"javaw"
+#define DEFAULT_MAINCLASS L"rs.in.aleksic.mcs.Startup"

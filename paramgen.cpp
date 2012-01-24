@@ -23,7 +23,7 @@ InformUser(IDS_INFO, <tekst koji hoces da posaljes>);
 */
 int ParameterGenerator::StartApplication(void) {
 	ChangeDirectoryIfSomeWellKnownFolderIsFound();
-	int configFileRead = _configReader->ReadConfigFile();
+	int configFileRead = ReadConfigFile();
 	if (configFileRead != 0)
 		return configFileRead;
 	SleepIfRequestedFromOutside();
@@ -55,12 +55,10 @@ void ParameterGenerator::ChangeDirectoryIfSomeWellKnownFolderIsFound() {
 // programu prosledi odgovarajuci par key + value, gde je value vreme u ms za cekanje
 void ParameterGenerator::SleepIfRequestedFromOutside() {
 	wchar_t* buff = new wchar_t[60];
-
 	size_t size = 60;
 	memset(buff, 0x00, 60);
-	TCHAR envParam[MAX_LOADSTRING];
-	_inform->LoadResourceString(IDS_WIN_LAUNCHER_ENV_PARAM_WAIT_ON_STARTUP, envParam, MAX_LOADSTRING);
-	_wdupenv_s(&buff, &size, envParam);
+
+	_wdupenv_s(&buff, &size, ENV_PARAM_WAITONSTARTUP);
 	if (size != 0) {
 		int interval = _wtoi(buff);
 		Sleep(interval);
@@ -145,14 +143,9 @@ void ParameterGenerator::AppendSplashParameter() {
 void ParameterGenerator::AppendMainClassParameter() {
 	wstring key(CONFIG_MAIN_CLASS);
 	wstring value = _configReader->NewExtractConfig(key);
-
-	if (value.length() > 0) {
-		_startParams <<  L" " <<  value.data();
-	} else {
-		TCHAR szMainClassName[MAX_LOADSTRING];
-		_inform->LoadResourceString(IDS_MAINCLASSNAME, szMainClassName, MAX_LOADSTRING);
-		_startParams <<  szMainClassName;
-	}
+	
+	_startParams <<  L" "
+		<< (value.length() > 0 ? value.data() : DEFAULT_MAINCLASS);
 
 	if (_debug->IsDebugOn())
 		_debug->Log(2, L"Main class included. Current startParams: ", _startParams.str().data());

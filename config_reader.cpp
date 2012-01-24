@@ -34,7 +34,6 @@ int ConfigReader::ReadConfigFile() {
 	if( !returnValue && (( noBytesRead = _read( fh, textAscii, fileSize ) ) <= 0) )
 		returnValue = -1;
 
-	// zatvaramo fajl
 	if (fh != -1)
 		_close( fh );
 
