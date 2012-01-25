@@ -14,7 +14,7 @@ int ConfigReader::ReadConfigFile() {
 	_debug->Log(1, L"------- Configuration File Parsing");
 
 	int fh;
-	int noBytesRead;
+	int noBytesRead = 0;
 	int returnValue = 0;
 
 	returnValue = _sopen_s( &fh, FILENAME_CONFIG, _O_RDWR, _SH_DENYNO, _S_IWRITE );

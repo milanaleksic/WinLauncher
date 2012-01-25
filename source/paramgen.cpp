@@ -122,7 +122,6 @@ void ParameterGenerator::AppendClasspath() {
 
 // default value: show
 void ParameterGenerator::AppendSplashParameter() {
-	bool showSplash = true;
 	wstring key(CONFIG_SHOW_SPLASH);
 	wstring value = _configReader->NewExtractConfig(key);
 	if (value == L"false")
