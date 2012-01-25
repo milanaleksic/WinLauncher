@@ -6,6 +6,9 @@ WinLauncher is C++ WinApi bootstrap application for complicated (multi-library) 
 Instead of using complicated batch files you can use this application to force a formal approach to your 
 Java application deployment.
 
+It does not have any runtime dependencies except basic Windows DLLs. In Release build, after compressing using UPX,
+executable it is only 80KB big.
+
 IDE requirements
 ------------------------------------------------------------
 
@@ -31,7 +34,7 @@ source code):
 |
 +---out
 |   +---production
-|           A.class     // compiled A.java (placed in git on purpose so you don't have to compile to run program from VS)
+|           A.class     // compiled A.java (in git on purpose so you don't have to compile before debugging in VS)
 |
 \---src
         A.java          // class with main method (the class which is targeted with startup parameter)
