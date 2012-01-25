@@ -64,8 +64,6 @@
     <None Include="WinLauncher.ico">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="README.md" />
-    <None Include=".gitignore" />
     <None Include="WinLauncher.vcproj" />
     <None Include="upx\upx.exe" />
     <None Include="sample\.launcher" />

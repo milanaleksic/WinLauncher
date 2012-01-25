@@ -160,7 +160,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="del $(OutDir)\Launch.exe&#x0D;&#x0A;upx.exe -9 $(TargetPath) -o$(OutDir)\Launch.exe&#x0D;&#x0A;"
+				CommandLine="del $(OutDir)\Launch.exe&#x0D;&#x0A;..\upx\upx.exe -9 $(TargetPath) -o$(OutDir)\Launch.exe&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
