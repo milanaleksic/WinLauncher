@@ -37,7 +37,8 @@ source code):
 |
 +---out
 |   +---production
-|           A.class     // compiled A.java (in git on purpose so you don't have to compile before debugging in VS)
+|           A.class     // compiled A.java 
+|                       // it is in git so you don't have to compile before debugging in VS)
 |
 \---src
         A.java          // class with main method (the class which is targeted with startup parameter)
