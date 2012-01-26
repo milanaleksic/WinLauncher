@@ -113,7 +113,8 @@ to fail because java still did not unlock .launcher file.
 Contact & license
 -----------------
 
-My name is Milan Aleksic. You can find more about me by visiting www.milanaleksic.net. 
+My name is Milan Aleksic. You can find more about me by visiting my personal Web site 
+[www.milanaleksic.net](www.milanaleksic.net). 
 My email is milan.aleksic@gmail.com. 
 
 WinLauncher has been maintained 2007-2012 by me before putting it on Github.
