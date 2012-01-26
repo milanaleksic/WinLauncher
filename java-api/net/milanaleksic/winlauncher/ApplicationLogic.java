@@ -10,7 +10,7 @@ public abstract class ApplicationLogic {
 
     public abstract void couldNotRun(Exception e) ;
 
-    public void setFileLock(FileLock lock) {
+    void setFileLock(FileLock lock) {
         this.lock = lock;
     }
 
