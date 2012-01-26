@@ -1,5 +1,5 @@
 WinLauncher
-=======
+===========
 
 WinLauncher is C++ WinApi bootstrap application for complicated (multi-library) Java applications/servers for Windows.
 
@@ -8,7 +8,7 @@ Java application deployment.
 
 
 IDE/runtime requirements
-------------------------------------------------------------
+------------------------
 
 You need to have Visual Studio C++ 2010 (Express will do - that is the one I am using).
 
@@ -19,7 +19,7 @@ executable is only 80KB big.
 
 
 Launcher environment and configuration
-------------------------------------------------------------
+--------------------------------------
 
 If you wish to use this application for bootstrapping your java application, the tree layout (sample from the 
 source code):
@@ -63,24 +63,44 @@ and use it as Java splash
 - **extraClasspathDir** - (optional) If not all of your classes are in lib\*.jar libraries but in a directory you
 simply want to add to path (like out\production in above example), you can use this parameter to mention that dir.
 
+Advanced topics
+---------------
 
-Singleton application and file locking
-------------------------------------------------------------
+### "Well known" directories
+
+To further clean up your deployment target folder, you can choose to push all files Java expects to be 
+present at the start directory into a "well known" directory.
+
+During boot-up, WinLauncher will go through the list of well known directories and if it finds any one from that list
+inside the directory where executable is positioned, it will move into that directory and then search for
+.launcher file etc.
+
+Currently, the "well known" list is in the code and contains only one item: "startup".
+
+
+### Singleton application and file locking
 
 WinLauncher expects that Java application (if desired) locks configuration file .launcher when started up.
 This will allow WinLauncher to early fail (before JVM has been started) and inform user that previous instance
 of the Java application should be closed first.
 
-WinLauncher startup parameters
-------------------------------------------------------------
+### WinLauncher startup parameters
 
 Besides configuration file itself, launcher can have some parameters sent to it directly:
 
 - **debug** parameter - to turn on debug output where some debug files are created
+- **nochangedir** parameter - by default, WinLauncher sets (as part of bootup process)
+"current directory" to the directory where the executable is. You can turn off this behavior by sending the
+"nochangedir" parameter. One suitable case where you wish to use this parameter is when you are debugging C++ code 
+and you'd like to avoid changing of the current directory (instead, you want to set it to location of ".launcher" file).
+
+Example call with parameters:
+```
+Launch.exe debug nochangedir
+```
 
 
-WinLauncher environment parameters
-------------------------------------------------------------
+### WinLauncher environment parameters
 
 - **winLauncherEnvParamWaitOnStartup** - you can use this environment parameter when starting the WinLauncher
 application to ask WinLauncher to "sleep" for awhile before bootstrapping Java program. 
@@ -88,4 +108,14 @@ application to ask WinLauncher to "sleep" for awhile before bootstrapping Java p
 This is suitable in "application restart" cases where you don't want startup of Java
 to fail because java still did not unlock .launcher file.
 
-(c) 2007-2011 by Milan Aleksic
+
+
+Contact & license
+-----------------
+
+My name is Milan Aleksic. You can find more about me by visiting www.milanaleksic.net. 
+My email is milan.aleksic@gmail.com. 
+
+WinLauncher has been maintained 2007-2012 by me before putting it on Github.
+
+WinLauncher is free for non-commercial usage.
