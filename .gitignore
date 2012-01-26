@@ -8,5 +8,6 @@ WinLauncher.sdf
 WinLauncher.suo
 *.user
 sample/*.log
+sample/*.exe
 *.iml
 output
