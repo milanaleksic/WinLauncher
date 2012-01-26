@@ -17,6 +17,9 @@ Source code depends on STL and WinApi headers, so be careful which IDE you're ch
 It does not have any runtime dependencies except basic Windows DLLs. In "Release" build, after compressing using UPX,
 executable is only 80KB big.
 
+Project source code already contains built/compiled Java code so you don't have to compile them before
+running code from Visual Studio.
+
 
 Launcher environment and configuration
 --------------------------------------

@@ -1,13 +1,15 @@
-import net.milanaleksic.winlauncher.ApplicationLogic;
-import net.milanaleksic.winlauncher.WinLauncherUtil;
+import net.milanaleksic.winlauncher.*;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 class A {
 
     public static void main(final String[] args) {
+        WinLauncherConfig config = new WinLauncherConfig();
+        config.setLauncherLocation("../output/Release/Launch.exe");
+        config.setDebug(true);
 
-        WinLauncherUtil.wrapSingletonApplicationLogic(new ApplicationLogic() {
+        WinLauncherUtil.wrapSingletonApplicationLogic(new ApplicationLogic(config) {
 
             public void run() {
                 B b = new B();

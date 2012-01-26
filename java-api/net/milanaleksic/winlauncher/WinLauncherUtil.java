@@ -14,10 +14,6 @@ public class WinLauncherUtil {
 
     private static final String WIN_LAUNCHER_ENV_PARAM_WAIT_ON_STARTUP = "winLauncherEnvParamWaitOnStartup";
 
-    private static final String WIN_LAUNCHER_EXECUTABLE = "WinLauncher.exe";
-
-    public static final int WIN_LAUNCHER_DEFAULT_PAUSE_TIME = 5000;
-
     public static FileLock createSingletonApplicationFileLock() {
         try {
             File configurationFile = new File(CONFIGURATION_FILENAME);
@@ -63,14 +59,10 @@ public class WinLauncherUtil {
         return absPath.substring(0, absPath.lastIndexOf(File.separatorChar)) + File.separatorChar;
     }
 
-    public static void restartApplication() {
-        restartApplication(WIN_LAUNCHER_DEFAULT_PAUSE_TIME);
-    }
-
-    public static void restartApplication(int pauseTimeMillis) {
+    public static void restartApplication(int pauseTimeMillis, String executableName) {
         try {
             String dir;
-            if (new File(WIN_LAUNCHER_EXECUTABLE).exists())
+            if (new File(executableName).exists())
                 dir = new File("").getAbsolutePath() + File.separator;
             else
                 dir = getParentDir();
@@ -88,10 +80,11 @@ public class WinLauncherUtil {
                 arr[i] = list.get(i);
             }
 
-            Runtime.getRuntime().exec(dir + WIN_LAUNCHER_EXECUTABLE, arr, new File(dir));
+            Runtime.getRuntime().exec(dir + executableName, arr, new File(dir));
 
         } catch (Exception e) {
             throw new WinLauncherException("Problem while trying to restart application - "+e.getMessage(), e);
         }
     }
+
 }

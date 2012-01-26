@@ -6,6 +6,16 @@ public abstract class ApplicationLogic {
 
     private FileLock lock = null;
 
+    private final WinLauncherConfig config;
+
+    public ApplicationLogic() {
+        this.config = new WinLauncherConfig();
+    }
+
+    public ApplicationLogic(WinLauncherConfig config) {
+        this.config = config;
+    }
+
     public abstract void run() ;
 
     public abstract void couldNotRun(Exception e) ;
@@ -15,12 +25,12 @@ public abstract class ApplicationLogic {
     }
 
     public void restartApplication() {
-        restartApplication(WinLauncherUtil.WIN_LAUNCHER_DEFAULT_PAUSE_TIME);
+        restartApplication(config.getPauseTime());
     }
 
     public void restartApplication(int pauseTimeMillis) {
         WinLauncherUtil.closeSingletonApplicationFileLock(lock);
-        WinLauncherUtil.restartApplication(pauseTimeMillis);
+        WinLauncherUtil.restartApplication(pauseTimeMillis, config.getLauncherLocation());
     }
 
 }
