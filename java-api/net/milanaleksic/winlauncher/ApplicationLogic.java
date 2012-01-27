@@ -25,12 +25,12 @@ public abstract class ApplicationLogic {
     }
 
     public void restartApplication() {
-        restartApplication(config.getPauseTime());
+        restartApplication(config);
     }
 
-    public void restartApplication(int pauseTimeMillis) {
+    public void restartApplication(WinLauncherConfig config) {
         WinLauncherUtil.closeSingletonApplicationFileLock(lock);
-        WinLauncherUtil.restartApplication(pauseTimeMillis, config.getLauncherLocation());
+        WinLauncherUtil.restartApplication(config);
     }
 
 }
