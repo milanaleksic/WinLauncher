@@ -20,6 +20,7 @@ public abstract class ApplicationLogic {
 
     public abstract void couldNotRun(Exception e) ;
 
+    // this method is package-visible to allow only WinLauncherUtil to set the file lock member variable
     void setFileLock(FileLock lock) {
         this.lock = lock;
     }
