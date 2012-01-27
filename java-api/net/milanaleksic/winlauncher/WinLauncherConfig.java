@@ -6,7 +6,7 @@ public class WinLauncherConfig {
 
     private static final int WIN_LAUNCHER_DEFAULT_PAUSE_TIME = 5000;
 
-    private String launcherLocation;
+    private String executable;
 
     private int pauseTime;
 
@@ -14,26 +14,26 @@ public class WinLauncherConfig {
 
     private boolean noChangeDir;
 
-    public WinLauncherConfig(String launcherLocation, int pauseTime, boolean debug, boolean noChangeDir) {
-        this.launcherLocation = launcherLocation;
+    public WinLauncherConfig(String executable, int pauseTime, boolean debug, boolean noChangeDir) {
+        this.executable = executable;
         this.pauseTime = pauseTime;
         this.debug = debug;
         this.noChangeDir = noChangeDir;
     }
 
     public WinLauncherConfig() {
-        this.launcherLocation = WIN_LAUNCHER_DEFAULT_EXECUTABLE;
+        this.executable = WIN_LAUNCHER_DEFAULT_EXECUTABLE;
         this.pauseTime = WIN_LAUNCHER_DEFAULT_PAUSE_TIME;
         this.debug = false;
         this.noChangeDir = false;
     }
 
-    public String getLauncherLocation() {
-        return launcherLocation;
+    public String getExecutable() {
+        return executable;
     }
 
-    public void setLauncherLocation(String launcherLocation) {
-        this.launcherLocation = launcherLocation;
+    public void setExecutable(String executable) {
+        this.executable = executable;
     }
 
     public int getPauseTime() {
@@ -58,5 +58,15 @@ public class WinLauncherConfig {
 
     public void setNoChangeDir(boolean noChangeDir) {
         this.noChangeDir = noChangeDir;
+    }
+
+    @Override
+    public String toString() {
+        return "WinLauncherConfig{" +
+                "executable='" + executable + '\'' +
+                ", pauseTime=" + pauseTime +
+                ", debug=" + debug +
+                ", noChangeDir=" + noChangeDir +
+                '}';
     }
 }
