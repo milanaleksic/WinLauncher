@@ -24,8 +24,8 @@ running code from Visual Studio.
 Launcher environment and configuration
 --------------------------------------
 
-If you wish to use this application for bootstrapping your java application, the tree layout (sample from the 
-source code):
+If you wish to use this application for bootstrapping your java application, the tree layout (the following listing
+is based on project files in sample directory in WinLauncher source code):
 
 
 ```
@@ -65,6 +65,17 @@ and use it as Java splash
 - **programArgs** - (optional) You can send parameters to your Java program using this parameter
 - **extraClasspathDir** - (optional) If not all of your classes are in lib\*.jar libraries but in a directory you
 simply want to add to path (like out\production in above example), you can use this parameter to mention that dir.
+
+
+### Java API
+
+As part of the project source code, you are also given the simple Java API classes to ease the cooperation between 
+the Java process and WinLauncher executable. The ode is straight-forward and utilized in the sample project, so
+I believe no additional information is needed. 
+
+Still, if you need any other information concerning Java API please feel free to contact me with questions and/or
+open issues if you see something is wrong with the code.
+
 
 Advanced topics
 ---------------
