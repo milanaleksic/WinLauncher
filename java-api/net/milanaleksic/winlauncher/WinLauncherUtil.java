@@ -59,32 +59,53 @@ public class WinLauncherUtil {
         return absPath.substring(0, absPath.lastIndexOf(File.separatorChar)) + File.separatorChar;
     }
 
-    public static void restartApplication(int pauseTimeMillis, String executableName) {
+    public static void restartApplication(WinLauncherConfig config) {
         try {
             String dir;
-            if (new File(executableName).exists())
+            if (new File(config.getExecutable()).exists())
                 dir = new File("").getAbsolutePath() + File.separator;
-            else
+            else {
                 dir = getParentDir();
-
-            Map<String, String> env = System.getenv();
-            List<String> list = new ArrayList<String>();
-            for (Map.Entry<String, String> entry : env.entrySet()) {
-                list.add(entry.getKey() + "=" + entry.getValue());
+                if (!new File(dir + config.getExecutable()).exists())
+                    throw new WinLauncherException("The WinLauncher executable could not be found");
             }
 
-            list.add(WIN_LAUNCHER_ENV_PARAM_WAIT_ON_STARTUP + "=" + pauseTimeMillis);
+            String[] arr = getEnvironmentProperties(config);
+            String params = getParams(config);
 
-            String[] arr = new String[list.size()];
-            for (int i = 0; i < list.size(); i++) {
-                arr[i] = list.get(i);
-            }
+            String command = dir + config.getExecutable() + params;
 
-            Runtime.getRuntime().exec(dir + executableName, arr, new File(dir));
+            Runtime.getRuntime().exec(command, arr, new File(dir));
 
         } catch (Exception e) {
-            throw new WinLauncherException("Problem while trying to restart application - "+e.getMessage(), e);
+            throw new WinLauncherException("Problem while trying to restart application - (Cause: "+e.getMessage()
+                    +").\r\nConfig: "+config, e);
         }
+    }
+
+    private static String[] getEnvironmentProperties(WinLauncherConfig config) {
+        Map<String, String> env = System.getenv();
+        List<String> list = new ArrayList<String>();
+        for (Map.Entry<String, String> entry : env.entrySet()) {
+            list.add(entry.getKey() + "=" + entry.getValue());
+        }
+
+        list.add(WIN_LAUNCHER_ENV_PARAM_WAIT_ON_STARTUP + "=" + config.getPauseTime());
+
+        String[] arr = new String[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            arr[i] = list.get(i);
+        }
+        return arr;
+    }
+
+    private static String getParams(WinLauncherConfig config) {
+        StringBuilder params = new StringBuilder();
+        if (config.isDebug())
+            params.append(" debug");
+        if (config.isDebug())
+            params.append(" nochangedir");
+        return params.toString();
     }
 
 }
