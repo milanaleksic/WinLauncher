@@ -25,10 +25,6 @@ public abstract class ApplicationLogic {
     }
 
     public void restartApplication() {
-        restartApplication(config);
-    }
-
-    public void restartApplication(WinLauncherConfig config) {
         WinLauncherUtil.closeSingletonApplicationFileLock(lock);
         WinLauncherUtil.restartApplication(config);
     }
