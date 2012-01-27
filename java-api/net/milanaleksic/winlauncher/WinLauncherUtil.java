@@ -62,6 +62,8 @@ public class WinLauncherUtil {
     }
 
     public static void restartApplication(WinLauncherConfig config) {
+        if (config == null)
+            throw new WinLauncherException("WinLauncherConfig can not be null!", e);
         try {
             String dir;
             if (new File(config.getExecutable()).exists())
