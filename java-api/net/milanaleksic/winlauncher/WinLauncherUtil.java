@@ -40,6 +40,8 @@ public class WinLauncherUtil {
     }
 
     public static void wrapSingletonApplicationLogic(ApplicationLogic applicationLogic) {
+        if (applicationLogic == null)
+            throw new WinLauncherException("ApplicationLogic can not be null!", e);
         FileLock lock = null;
         try {
             lock = createSingletonApplicationFileLock();
@@ -103,7 +105,7 @@ public class WinLauncherUtil {
         StringBuilder params = new StringBuilder();
         if (config.isDebug())
             params.append(" debug");
-        if (config.isDebug())
+        if (config.isNoChangeDir())
             params.append(" nochangedir");
         return params.toString();
     }
