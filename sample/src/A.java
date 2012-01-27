@@ -6,7 +6,7 @@ class A {
 
     public static void main(final String[] args) {
         WinLauncherConfig config = new WinLauncherConfig();
-        config.setLauncherLocation("../output/Release/Launch.exe");
+        config.setExecutable("../output/Release/Launch.exe");
         config.setDebug(true);
 
         WinLauncherUtil.wrapSingletonApplicationLogic(new ApplicationLogic(config) {

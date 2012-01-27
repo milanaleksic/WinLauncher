@@ -41,7 +41,7 @@ public class WinLauncherUtil {
 
     public static void wrapSingletonApplicationLogic(ApplicationLogic applicationLogic) {
         if (applicationLogic == null)
-            throw new WinLauncherException("ApplicationLogic can not be null!", e);
+            throw new WinLauncherException("ApplicationLogic can not be null!");
         FileLock lock = null;
         try {
             lock = createSingletonApplicationFileLock();
@@ -63,7 +63,7 @@ public class WinLauncherUtil {
 
     public static void restartApplication(WinLauncherConfig config) {
         if (config == null)
-            throw new WinLauncherException("WinLauncherConfig can not be null!", e);
+            throw new WinLauncherException("WinLauncherConfig can not be null!");
         try {
             String dir;
             if (new File(config.getExecutable()).exists())
