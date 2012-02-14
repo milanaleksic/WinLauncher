@@ -9,7 +9,7 @@ public abstract class ApplicationLogic {
     private final WinLauncherConfig config;
 
     public ApplicationLogic() {
-        this.config = new WinLauncherConfig();
+        this.config = WinLauncherConfig.build();
     }
 
     public ApplicationLogic(WinLauncherConfig config) {

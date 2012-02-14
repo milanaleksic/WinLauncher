@@ -14,14 +14,11 @@ public class WinLauncherConfig {
 
     private boolean noChangeDir;
 
-    public WinLauncherConfig(String executable, int pauseTime, boolean debug, boolean noChangeDir) {
-        this.executable = executable;
-        this.pauseTime = pauseTime;
-        this.debug = debug;
-        this.noChangeDir = noChangeDir;
+    public static WinLauncherConfig build() {
+        return new WinLauncherConfig();
     }
 
-    public WinLauncherConfig() {
+    private WinLauncherConfig() {
         this.executable = WIN_LAUNCHER_DEFAULT_EXECUTABLE;
         this.pauseTime = WIN_LAUNCHER_DEFAULT_PAUSE_TIME;
         this.debug = false;
@@ -32,32 +29,36 @@ public class WinLauncherConfig {
         return executable;
     }
 
-    public void setExecutable(String executable) {
+    public WinLauncherConfig setExecutable(String executable) {
         this.executable = executable;
+        return this;
     }
 
     public int getPauseTime() {
         return pauseTime;
     }
 
-    public void setPauseTime(int pauseTime) {
+    public WinLauncherConfig setPauseTime(int pauseTime) {
         this.pauseTime = pauseTime;
+        return this;
     }
 
     public boolean isDebug() {
         return debug;
     }
 
-    public void setDebug(boolean debug) {
+    public WinLauncherConfig setDebug(boolean debug) {
         this.debug = debug;
+        return this;
     }
 
     public boolean isNoChangeDir() {
         return noChangeDir;
     }
 
-    public void setNoChangeDir(boolean noChangeDir) {
+    public WinLauncherConfig setNoChangeDir(boolean noChangeDir) {
         this.noChangeDir = noChangeDir;
+        return this;
     }
 
     @Override

@@ -5,9 +5,8 @@ import javax.swing.JOptionPane;
 class A {
 
     public static void main(final String[] args) {
-        WinLauncherConfig config = new WinLauncherConfig();
-        config.setExecutable("../output/Release/Launch.exe");
-        config.setDebug(true);
+        WinLauncherConfig config = WinLauncherConfig.build().setDebug(true)
+                .setExecutable("../output/Release/Launch.exe");
 
         WinLauncherUtil.wrapSingletonApplicationLogic(new ApplicationLogic(config) {
 
