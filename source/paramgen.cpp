@@ -40,9 +40,8 @@ void ParameterGenerator::ChangeDirectoryIfSomeWellKnownFolderIsFound() {
 		delete[] currentDir;
 	}
 
-	const int COUNT = 3;
-	wchar_t* wellKnownDirectories[COUNT] = { L"startup" };
-	for (int i=0; i < COUNT; i++) {
+	wchar_t* wellKnownDirectories[] = { L"startup", L"bin" };
+	for (int i=0; i < sizeof(wellKnownDirectories)/sizeof(wellKnownDirectories[0]); i++) {
 		if (SetCurrentDirectory(wellKnownDirectories[i])) {
 			_wellKnownSubfolderFound = true;
 			_debug->Log(2, L"Well-known subfolder found, setting startup dir to it: ", wellKnownDirectories[i]);
