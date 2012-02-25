@@ -89,7 +89,7 @@ During boot-up, WinLauncher will go through the list of well known directories a
 inside the directory where executable is positioned, it will move into that directory and then search for
 .launcher file etc.
 
-Currently, the "well known" list is in the code and contains only one item: "startup".
+Currently, the "well known" list is in the code and contains two items: "startup" and "bin".
 
 
 ### Singleton application and file locking
