@@ -72,7 +72,7 @@ BEGIN
     IDS_COULDNOTSTART       "Application startup failed. Parameters used::\r\n"
     IDC_WINLAUNCHER         "WINLAUNCHER"
     IDS_ERRORACCESS         "Problem while accessing configuration file"
-    IDS_ERRORNOTFOUND       "Configuration file coud not have been found"
+    IDS_ERRORNOTFOUND       "Configuration file could not have been found"
 END
 
 STRINGTABLE 
