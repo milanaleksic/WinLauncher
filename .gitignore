@@ -11,3 +11,4 @@ sample/*.log
 sample/*.exe
 *.iml
 output
+java-api/build

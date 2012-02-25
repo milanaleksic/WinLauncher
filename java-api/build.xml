@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="WinLauncher" basedir="." default="jar" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+    <property file="build.properties"/>
+
+    <target name="clean" description="Init tasks">
+        <delete dir="${compile.dir}" failonerror="false"/>
+        <delete dir="${distro.dir}" failonerror="false"/>
+    </target>
+
+    <target name="init" description="Init tasks" depends="clean">
+        <tstamp/>
+    </target>
+
+    <target name="compile" description="Compiling WinLauncher" depends="init">
+        <mkdir dir="${compile.dir}"/>
+        <javac destDir="${compile.dir}" source="1.7" encoding="UTF-8" includeantruntime="false" debug="true">
+            <src path="${src.dir}"/>
+        </javac>
+    </target>
+
+    <target name="jar" description="JARs the MovieCatalogSystem" depends="compile">
+        <mkdir dir="${distro.dir}"/>
+        <jar destfile="${distro.dir}/winlauncher-api-${DSTAMP}.jar">
+            <manifest>
+                <attribute name="Manifest-Version" value="1.0"/>
+            </manifest>
+            <fileset dir="${compile.dir}"/>
+        </jar>
+    </target>
+
+</project>
