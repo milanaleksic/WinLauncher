@@ -19,7 +19,7 @@
         </javac>
     </target>
 
-    <target name="jar" description="JARs the MovieCatalogSystem" depends="compile">
+    <target name="jar" description="JARs the WinLauncher" depends="compile">
         <mkdir dir="${distro.dir}"/>
         <jar destfile="${distro.dir}/winlauncher-api-${DSTAMP}.jar">
             <manifest>
