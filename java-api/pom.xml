@@ -5,13 +5,11 @@
     <groupId>net.milanaleksic</groupId>
     <artifactId>winlauncher-api</artifactId>
     <name>WinLauncher Java API</name>
-    <version>${build.timestamp}</version>
+    <version>20120620</version>
     <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
-        <build.timestamp>${maven.build.timestamp}</build.timestamp>
     </properties>
 
     <developers>
@@ -49,7 +47,7 @@
                         <configuration>
                             <tasks>
                                 <ant dir="." target="jar"/>
-                                <attachArtifact file="build/distro/winlauncher-api-${build.timestamp}.jar"/>
+                                <attachArtifact file="build/distro/winlauncher-api-20120620.jar"/>
                             </tasks>
                         </configuration>
                     </execution>
