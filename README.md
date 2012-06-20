@@ -76,6 +76,26 @@ I believe no additional information is needed.
 Still, if you need any other information concerning Java API please feel free to contact me with questions and/or
 open issues if you see something is wrong with the code.
 
+Java API is contained in the "java-api" directory and is available using Maven:
+
+```
+<dependency>
+    <groupId>net.milanaleksic</groupId>
+    <artifactId>winlauncher-api</artifactId>
+    <version>20120620</version>
+</dependency>
+```
+
+in the following repo:
+
+```
+<repository>
+    <id>mavenrepo-maven.milanaleksic.net</id>
+    <name>MilanAleksic.Net repository for Maven</name>
+    <url>http://maven.milanaleksic.net/release/</url>
+    <layout>default</layout>
+</repository>
+```
 
 Advanced topics
 ---------------
