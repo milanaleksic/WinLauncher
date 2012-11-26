@@ -21,7 +21,7 @@ private:
 
 	bool LineIsAComment(const wstring&);
 
-	void DoProcessReadBuffer(int, int, const char*) ;
+	void DoProcessReadBuffer(int, const char*) ;
 
 public:
 

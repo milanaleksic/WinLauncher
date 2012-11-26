@@ -2,7 +2,6 @@
 #include "Resource.h"
 #include <fcntl.h>    // _O_RDWR
 #include <sys/stat.h> // _S_IWRITE
-#include <mbstring.h> // _mbbtombc
 #include "config_reader.h"
 
 ConfigReader::ConfigReader(const Inform* inform, Debug* debug) {
@@ -38,20 +37,17 @@ int ConfigReader::ReadConfigFile() {
 		_close( fh );
 
 	if (returnValue == 0)
-		DoProcessReadBuffer(noBytesRead, fileSize, textAscii);
+		DoProcessReadBuffer(noBytesRead, textAscii);
 	
 	delete [] textAscii;
 
 	return returnValue;
 }
 
-void ConfigReader::DoProcessReadBuffer(int noBytesRead, int fileSize, const char *textAscii) {
-	wchar_t *_text = new wchar_t[fileSize];
-
-	for (int i=0; i<noBytesRead; i++)
-		_text[i] = _mbbtombc(textAscii[i]);
-	for (int i=noBytesRead; i<fileSize; i++)
-		_text[i] = 0x00;
+void ConfigReader::DoProcessReadBuffer(int fileSize, const char *textAscii) {
+	wchar_t *_text = new wchar_t[fileSize+1];
+	size_t num_converted;
+	mbstowcs_s(&num_converted, _text, fileSize+1, textAscii, fileSize);
 
 	_debug->Log(3, L"Complete file read: [", _text, L"]");
 
@@ -105,7 +101,7 @@ wstring ConfigReader::TrimString(const wstring& str) {
 		begin++;
 	while (str[end] == L' ')
 		end--;
-	if (begin<end)
+	if (begin <= end)
 		return str.substr(begin, end-begin+1);
 	else
 		return str;
