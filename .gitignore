@@ -5,10 +5,11 @@ ipch
 WinLauncher.ncb
 WinLauncher.opensdf
 WinLauncher.sdf
-WinLauncher.suo
+*.suo
 *.user
 sample/*.log
 sample/*.exe
 *.iml
 output
 java-api/build
+*.*~
