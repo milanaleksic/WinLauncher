@@ -47,7 +47,7 @@
                         <configuration>
                             <tasks>
                                 <ant dir="." target="jar"/>
-                                <attachArtifact file="build/distro/winlauncher-api-${project.version}.jar"/>
+                                <attachArtifact file="build/distro/winlauncher-api.jar"/>
                             </tasks>
                         </configuration>
                     </execution>

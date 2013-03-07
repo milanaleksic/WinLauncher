@@ -21,7 +21,7 @@
 
     <target name="jar" description="JARs the WinLauncher" depends="compile">
         <mkdir dir="${distro.dir}"/>
-        <jar destfile="${distro.dir}/winlauncher-api-${DSTAMP}.jar">
+        <jar destfile="${distro.dir}/winlauncher-api.jar">
             <manifest>
                 <attribute name="Manifest-Version" value="1.0"/>
             </manifest>
