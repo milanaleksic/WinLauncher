@@ -10,28 +10,27 @@ Java application deployment.
 IDE/runtime requirements
 ------------------------
 
-You need to have Visual Studio C++ 2010 (Express will do - that is the one I am using).
-
-Source code depends on STL and WinApi headers, so be careful which IDE you're choosing to use.
+I used Visual Studio C++ 2010 or newer (Express version will do - that's the one I am using). In case you don't want to use VS
+you must have STL and WinApi headers included in the available libraries.
 
 It does not have any runtime dependencies except basic Windows DLLs. In "Release" build, after compressing using UPX,
-executable is only 80KB big.
+executable is only **80KB** big.
 
 Project source code already contains built/compiled Java code so you don't have to compile them before
-running code from Visual Studio.
+running code from C++ IDE.
 
 
 Launcher environment and configuration
 --------------------------------------
 
-If you wish to use this application for bootstrapping your java application, the tree layout (the following listing
+If you wish to use this application for bootstrapping your java application, the tree layout should be as shown below (the following listing
 is based on project files in sample directory in WinLauncher source code):
 
 
 ```
 .
 |   .launcher           // **one and only configuration file**
-|   debug-output.log    // debug-*.log files will be generated if "debug" is sent to WinLauncher.exe
+|   debug-output.log    // debug-*.log files will be generated only if "debug" is sent to WinLauncher.exe
 |   debug-stderr.log
 |   debug-stdout.log
 |
@@ -47,9 +46,9 @@ is based on project files in sample directory in WinLauncher source code):
         A.java          // class with main method (the class which is targeted with startup parameter)
 ```
 
-You can choose to have your code in either any jar file in the lib directory or outside it in bin directory.
+You can choose to have your code in either any jar file in the **lib** directory or as *.class* files in **bin** directory.
 
-Lib folder is mandatory library location (although it can be empty if you don't need dependencies).
+**lib** folder is mandatory library location (although it can be empty if you don't need dependencies).
 
 If your IDE does not compile into out directory as IntelliJ Idea does, you can replace value in
 **extraClasspathDir** from the sample **.launcher** file
@@ -137,10 +136,10 @@ Launch.exe debug nochangedir
 ### WinLauncher environment parameters
 
 - **winLauncherEnvParamWaitOnStartup** - you can use this environment parameter when starting the WinLauncher
-application to ask WinLauncher to "sleep" for awhile before bootstrapping Java program. 
+application to ask WinLauncher to "sleep" on startup for awhile (in ms) before bootstrapping Java program. 
 
 This is suitable in "application restart" cases where you don't want startup of Java
-to fail because java still did not unlock .launcher file.
+to fail because java.exe process still did not unlock .launcher file.
 
 
 
@@ -149,8 +148,6 @@ Contact & license
 
 My name is Milan Aleksic. You can find more about me by visiting my personal Web site 
 [www.milanaleksic.net](www.milanaleksic.net). 
-My email is milan.aleksic@gmail.com. 
+My email is milanaleksic@gmail.com. 
 
 WinLauncher has been maintained 2007-2012 by me before putting it on Github.
-
-WinLauncher is free for non-commercial usage.
